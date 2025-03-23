@@ -6,7 +6,7 @@ export const useAuthStore = defineStore('auth', () => {
   
   const authenticate = async (username: string, password: string) => {
     try {
-      const response = await $fetch('/api/auth', {
+      const response = await $fetch<AuthResponse>('/api/auth', {
         method: 'POST',
         body: {
           username: username,
@@ -14,14 +14,10 @@ export const useAuthStore = defineStore('auth', () => {
         }
       })
   
-      if (response.success) {
-        login()
-        errorMessage.value = ''
-      } else {
-        errorMessage.value = 'Неверный логин или пароль. Попробуйте ещё раз.'
-      }
+      if (response.success) login()
+      errorMessage.value = (response.success) ? '' : 'Неверный логин или пароль. Попробуйте ещё раз.'
     } catch (error) {
-      console.error('Error: ', error)
+      console.error(error);
       errorMessage.value = 'Ошибка авторизации. Попробуйте позже'
     }  
   }

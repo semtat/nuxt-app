@@ -1,9 +1,14 @@
-export { CredentialsUser, User, FilteredUser };
+export { CredentialsUser, AuthResponse, User, FilteredUser };
 
 declare global {
   interface CredentialsUser {
     username: string
     password: string
+  }
+
+  interface AuthResponse {
+    success: boolean
+    user: User | null
   }
   
   interface User {

@@ -8,10 +8,7 @@ const filters = reactive({
   date: ''
 })
 
-onMounted(async () => {
-  await usersStore.fetchUsers()
-  usersStore.filterUsers(filters)
-})
+usersStore.fetchUsers()
 
 const applyFilters = () => {
   usersStore.filterUsers(filters)
@@ -24,15 +21,17 @@ const handleLogout = () => {
 
 <template>
   <div class="p-8">
-    <div class="mb-6 flex gap-4">
-      <UInput v-model="filters.name" placeholder="Filter by name" />
-      <UInput v-model="filters.surname" placeholder="Filter by surname" />
+    <div class="mb-6 flex gap-4 justify-center">
+      <UInput v-model="filters.name" placeholder="Поиск по имени" />
+      <UInput v-model="filters.surname" placeholder="Поиск по фамилии" />
       <UInput v-model="filters.date" type="date" />
-      <UButton @click="applyFilters">Apply Filters</UButton>
+      <UButton @click="applyFilters">Фильтр</UButton>
     </div>
 
     <UTable :data="usersStore.filteredUsers" />
 
-    <UButton class="mt-6" @click="handleLogout">Logout</UButton>
+    <div class="flex justify-center">
+      <UButton class="mt-6" @click="handleLogout">Выход</UButton>
+    </div>
   </div>
 </template>

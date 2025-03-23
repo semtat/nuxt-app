@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia"
-
 const authStore = useAuthStore()
 
 const username = ref('')
@@ -37,22 +35,22 @@ const handleLogin = () => authStore.authenticate(username.value, password.value)
         </div>
 
         <div>
-        <label for="password" class="sr-only">Пароль</label>
-        <UInput
-          id="password"
-          v-model="password"
-          type="password"
-          placeholder="Введите пароль"
-          required
-          class="w-full"
-        />
+          <label for="password" class="sr-only">Пароль</label>
+          <UInput
+            id="password"
+            v-model="password"
+            type="password"
+            placeholder="Введите пароль"
+            required
+            class="w-full"
+          />
         </div>
 
         <div>
           <UButton
             type="submit"
             color="primary"
-            class="w-full text-center"
+            class="w-full justify-center"
           >
             Войти
           </UButton>

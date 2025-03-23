@@ -4,15 +4,13 @@ export const useUsersStore = defineStore('users', () => {
   const users = ref<FilteredUser[]>([])
   const filteredUsers = ref<FilteredUser[]>([])
 
-  // Загрузка пользователей из API
   const fetchUsers = async () => {
     try {
       const data = await $fetch<FilteredUser[]>('/api/users')
       users.value = data
-      filteredUsers.value = data 
+      filteredUsers.value = data
     } catch (error) {
-      console.error('Failed to fetch users:', error)
-      throw new Error('Failed to load users data')
+      console.error(error);
     }
   }
 
@@ -22,8 +20,8 @@ export const useUsersStore = defineStore('users', () => {
         ? new Date(user.created).toLocaleDateString() === new Date(filters.date).toLocaleDateString()
         : true
 
-      const nameMatch = filters.name ? user.name.includes(filters.name) : true
-      const surnameMatch = filters.surname ? user.surname.includes(filters.surname) : true
+      const nameMatch = filters.name ? user.name.toLowerCase().includes(filters.name.toLowerCase()) : true
+      const surnameMatch = filters.surname ? user.surname.toLowerCase().includes(filters.surname.toLowerCase()) : true
 
       return dateMatch && nameMatch && surnameMatch
     })

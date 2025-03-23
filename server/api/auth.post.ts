@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody<CredentialsUser>(event)
   
   const jsonData = await useStorage().getItem('data:users.json')
-  const usersData = JSON.stringify(jsonData);
+  const usersData = JSON.stringify(jsonData)
 
   if (typeof usersData !== 'string') {
     throw createError({
