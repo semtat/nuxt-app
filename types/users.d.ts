@@ -1,4 +1,4 @@
-export { CredentialsUser, AuthResponse, User, FilteredUser };
+export { CredentialsUser, AuthResponse, User, FilteredUser }
 
 declare global {
   interface CredentialsUser {
