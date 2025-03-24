@@ -17,7 +17,7 @@ export const useAuthStore = defineStore('auth', () => {
       if (response.success) login()
       errorMessage.value = (response.success) ? '' : 'Неверный логин или пароль. Попробуйте ещё раз.'
     } catch (error) {
-      console.error(error);
+      console.error(error)
       errorMessage.value = 'Ошибка авторизации. Попробуйте позже'
     }  
   }

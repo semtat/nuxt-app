@@ -10,14 +10,14 @@ export const useUsersStore = defineStore('users', () => {
       users.value = data
       filteredUsers.value = data
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   }
 
   const filterUsers = (filters: { name?: string; surname?: string; date?: string }) => {
     filteredUsers.value = users.value.filter(user => {
       const dateMatch = filters.date
-        ? new Date(user.created).toLocaleDateString() === new Date(filters.date).toLocaleDateString()
+        ? user.created.split(' ')[0] === filters.date.split('-').reverse().join('.')
         : true
 
       const nameMatch = filters.name ? user.name.toLowerCase().includes(filters.name.toLowerCase()) : true

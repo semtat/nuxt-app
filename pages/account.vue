@@ -8,7 +8,7 @@ const filters = reactive({
   date: ''
 })
 
-usersStore.fetchUsers()
+await usersStore.fetchUsers()
 
 const applyFilters = () => {
   usersStore.filterUsers(filters)
