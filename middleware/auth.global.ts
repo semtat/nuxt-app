@@ -1,4 +1,3 @@
-// middleware/auth.global.ts
 export default defineNuxtRouteMiddleware((to) => {
   const auth = useCookie('auth')
 
