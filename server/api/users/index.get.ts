@@ -11,16 +11,7 @@ function filterUserKeys(users: User[]): FilteredUser[] {
 }
 
 export default defineEventHandler(async () => {
-  const jsonData = await useStorage().getItem('data:users.json')
-  const usersData = JSON.stringify(jsonData)
+  const users = await useStorage().getItem<User[]>('data:users.json') || []
 
-  if (typeof usersData !== 'string') {
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'Некорректный формат данных'
-    })
-  }
-
-  const users = JSON.parse(usersData)
   return filterUserKeys(users)
 })
